@@ -1,0 +1,28 @@
+@host = http://127.0.0.1:3000/
+
+GET {{host}}tasks
+
+###
+
+POST {{host}}newtask
+Content-Type: application/json
+
+{
+    "prioridadeTarefa":"alta",
+    "nomeTarefa":"Elaborar o Paper",
+    "dataLimite": "28/11/2024",
+    "detalhesTarefa":"O Paper vai ser sobre uma aplicação web" 
+}
+###
+GET {{host}}itens/OljfhVexelHeslqc
+###
+
+POST {{host}}newitem HTTP/1.1
+Content-Type: application/json
+
+{
+    "idTask":"IpLWeMrjGIQjnuM1",
+    "percentual": 40,
+    "descricaoExecucao":"Construir a aplicação",
+    "dataExecucao": "10/11/2024"
+}
