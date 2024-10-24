@@ -76,7 +76,6 @@ export default function Task({idTask, prioridadeTarefa, nomeTarefa, dataLimite, 
         }
         //Caso a API retorne status 201, pega os dados JSON do response
         const data = await response.json();
-
         //deleta o item do useStatus itens
         setItens(prevData=>prevData.filter(item=>item._id!=itemDelete._id))
         //Caso o item deletado tenha status concluido, altera o percentual concluido do useStatus pConcluido da tarefa
@@ -88,7 +87,7 @@ export default function Task({idTask, prioridadeTarefa, nomeTarefa, dataLimite, 
             onAtualizarPercentual(itemDelete.idTask, {_id:idTask, prioridadeTarefa, nomeTarefa, dataLimite, percentualConcluido:pConcluido, detalhesTarefa})
         }
         //retorna o status e a mensagem
-        return {status:data.status, message:data.message}
+        return {status:response.status, message:data.message}
     }
 
     const updateItem = async (idItem, itemChange)=>{
@@ -157,7 +156,7 @@ export default function Task({idTask, prioridadeTarefa, nomeTarefa, dataLimite, 
                                 
                                 <div className="col-12 align-self-center">
                                     <div className="row justify-content-center align-items-center">
-                                        <button className="btn btn-danger w-auto" onClick={hadlerDeleteTask}><i class="fa-solid fa-x fs-5"></i></button>                              
+                                        <button className="btn btn-danger w-auto" onClick={hadlerDeleteTask}><i className="fa-solid fa-x fs-5"></i></button>                              
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +166,7 @@ export default function Task({idTask, prioridadeTarefa, nomeTarefa, dataLimite, 
                 <div id={"tarefa"+idTask} className="collapse" aria-labelledby={"heading-"+idTask}>
                     <div className="card-body">
                         {itens.map(item=>(
-                            <Item idTask={item.idTask} idItem={item._id} descricaoExecucao={item.descricaoExecucao}
+                            <Item key={item._id} idTask={item.idTask} idItem={item._id} descricaoExecucao={item.descricaoExecucao}
                             percentual={item.percentual} dataExecucao={item.dataExecucao} status={item.status}
                             onDeleteItem={deleteItem} onUpdateItem={updateItem} onShowAlertMessage={onShowAlertMessage}/>
                         ))}

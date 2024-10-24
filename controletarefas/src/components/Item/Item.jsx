@@ -31,6 +31,7 @@ export default function Item({idTask, percentual, descricaoExecucao, dataExecuca
         const itemDelete = {idTask, percentual, descricaoExecucao, dataExecucao, status, _id:idItem}
         //Função que irá fazer a chama a API
         const res = await onDeleteItem(itemDelete);
+        console.log(res.status);
         if (res.status == '200' || res.status =='201'){
             onShowAlertMessage(res.message, 'success')
             return
@@ -44,7 +45,7 @@ export default function Item({idTask, percentual, descricaoExecucao, dataExecuca
                 <div className="col-1">
                     <div className="row align-items-center justify-content-center">
                         <h2 className="fs-5 fw-bold text-center">Status</h2>
-                        <input class="form-check-input fs-4 m-0" type="checkbox" value={itemStatus} 
+                        <input className="form-check-input fs-4 m-0" type="checkbox" value={itemStatus} 
                         onChange={(e)=>{handleChangeStatus()}} checked={isChecked}/>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ export default function Item({idTask, percentual, descricaoExecucao, dataExecuca
                 </div>
                 <div className="col-1">
                     <div className="row h-100 align-items-center justify-content-center gap-2">
-                        <button className="btn btn-danger w-auto" onClick={handleDeleteItem}><i class="fa-solid fa-x"></i></button>
+                        <button className="btn btn-danger w-auto" onClick={handleDeleteItem}><i className="fa-solid fa-x"></i></button>
                     </div>
                 </div>
             </div>
